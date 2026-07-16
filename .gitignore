@@ -5,7 +5,6 @@ coverage/
 playwright-report/
 .env*
 !.env.example
-public/pdf.worker.min.mjs
 *.log
 *.tsbuildinfo
 .env
