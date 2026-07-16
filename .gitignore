@@ -8,3 +8,4 @@ playwright-report/
 public/pdf.worker.min.mjs
 *.log
 *.tsbuildinfo
+.env
