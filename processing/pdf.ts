@@ -110,7 +110,7 @@ function canvasBlob(canvas: HTMLCanvasElement, type: string, quality: number) {
 export async function pdfToImages(file: File, options: ProcessingOptions, progress: ProgressCallback, signal: AbortSignal): Promise<ProcessedOutput[]> {
   const pdfjs = await import("pdfjs-dist")
   pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs"
-  const document = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()), isEvalSupported: false }).promise
+  const document = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise
   const outputs: { name: string; blob: Blob }[] = []
   const extension = options.format === "image/jpeg" ? "jpg" : options.format === "image/png" ? "png" : "webp"
 
@@ -133,7 +133,7 @@ export async function pdfToImages(file: File, options: ProcessingOptions, progre
       page.cleanup()
     }
   } finally {
-    await document.destroy()
+    await document.loadingTask.destroy()
   }
 
   if (outputs.length === 1) return [{ ...outputs[0], sourceBytes: file.size }]
