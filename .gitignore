@@ -1,0 +1,10 @@
+.next/
+node_modules/
+node_modules.verification-link/
+coverage/
+playwright-report/
+.env*
+!.env.example
+public/pdf.worker.min.mjs
+*.log
+*.tsbuildinfo

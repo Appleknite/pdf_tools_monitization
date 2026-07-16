@@ -1,0 +1,19 @@
+export const site = {
+  name: "ClearDoc Tools",
+  description:
+    "Free, private PDF and image tools that process files in your browser without unnecessary uploads.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  supportUrl: process.env.NEXT_PUBLIC_SUPPORT_URL || "",
+  contactUrl: process.env.NEXT_PUBLIC_CONTACT_URL || "",
+}
+
+export function absoluteUrl(path = "/") {
+  return new URL(path, site.url).toString()
+}
+
+export function formatBytes(bytes: number) {
+  if (bytes === 0) return "0 B"
+  const units = ["B", "KB", "MB", "GB"]
+  const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1)
+  return `${(bytes / 1024 ** index).toFixed(index === 0 ? 0 : 1)} ${units[index]}`
+}
